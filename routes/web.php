@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Idioma;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,17 @@ use Laravel\Socialite\Facades\Socialite;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $isLoginRoute = Route::has('login'); 
+    $isRegisterRoute = Route::has('register'); 
+    $authUser = Auth::user();
+    $idiomaCodigo = Idioma::where('Seleccionado', 1)->first()->Codigo;
+
+    return view('welcome')->with([
+        'isLoginRoute'=>$isLoginRoute,
+        'isRegisterRoute'=>$isRegisterRoute,
+        'authUser'=>$authUser,
+        'idiomaCodigo'=>$idiomaCodigo
+    ]);
 });
 
 //RUTAS PARA SOCIALITE / GOOGLE CLOUD AUTH
