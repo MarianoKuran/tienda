@@ -15,9 +15,9 @@ class CreateIdiomaTable extends Migration
     {
         Schema::create('Idioma', function (Blueprint $table) {
             $table->bigIncrements('IdiomaID');
-            $table->string('Descripcion');
-            $table->string('Codigo');
-            $table->boolean('Seleccionado');
+            $table->string('Descripcion')->unique()->required();
+            $table->string('Codigo')->unique()->required();
+            $table->boolean('Seleccionado')->required();
             
             $table->timestamps();
             $table->softDeletes();

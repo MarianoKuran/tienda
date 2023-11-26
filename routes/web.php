@@ -21,13 +21,13 @@ Route::get('/', function () {
     $isLoginRoute = Route::has('login'); 
     $isRegisterRoute = Route::has('register'); 
     $authUser = Auth::user();
-    $idiomaSeleccionado = Idioma::where('Seleccionado', true)->first();
+    $idiomaCodigo = Idioma::where('Seleccionado', 1)->first()->Codigo;
 
     return view('welcome')->with([
         'isLoginRoute'=>$isLoginRoute,
         'isRegisterRoute'=>$isRegisterRoute,
         'authUser'=>$authUser,
-        'idiomaSeleccionado'=>$idiomaSeleccionado,
+        'idiomaCodigo'=>$idiomaCodigo
     ]);
 });
 

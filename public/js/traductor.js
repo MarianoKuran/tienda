@@ -1,8 +1,12 @@
 window.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener('traducir', function (e) {
+        window.location.reload();
+    });
+
+    let idiomaCodigo = $('#idiomaCodigo').val();
     const encodedParams = new URLSearchParams();
-    
       
-    function traducir() {
+    function traducir(idiomaCodigo) {
         let res = obtenerElementosTraducibles();
         if(res.traducir){
             for (const i of res.traducibles) {
@@ -22,7 +26,7 @@ window.addEventListener('DOMContentLoaded', function () {
                     },
                     data: {
                         source_language: 'es',
-                        target_language: 'en',
+                        target_language: idiomaCodigo,
                         text: i.innerText
                     }
                 };
@@ -44,5 +48,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
     function mostrarTraduccion(data, traducible) {
         traducible.innerText = data.translatedText;
+    }
+
+    if (idiomaCodigo != 'es') {
+        traducir(idiomaCodigo);
     }
 });
