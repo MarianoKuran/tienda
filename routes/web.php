@@ -70,6 +70,16 @@ Route::get('/google-auth/callback', function () {
         
         Auth::login($user);
         return redirect('/dashboard');
+    } else {
+        $user = User::updateOrCreate([
+            'google_id'=>$userGoogle->id,
+        ],
+        [
+            'name'=>$userGoogle->name,
+            'email'=>$userGoogle->email,
+        ]);
+        Auth::login($user);
+        return redirect('/dashboard');
     }
 });
 
