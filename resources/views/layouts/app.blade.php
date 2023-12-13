@@ -10,15 +10,20 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <!-- Font Awesome 4 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         @if (isset($styles))
             {{ $styles }}
+            <style>
+                .nav{
+                    height: 65px;
+                    background-color: white;
+                }
+           </style>
         @endif
         
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @if (isset($scripts))
-            {{ $scripts }}
-        @endif
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -31,6 +36,11 @@
                         {{ $header }}
                     </div>
                 </header>
+            @endif
+
+            <!-- side menu -->
+            @if (isset($menu))
+                {{ $menu }}
             @endif
 
             <!-- Page Content -->

@@ -1,17 +1,16 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+    <x-slot name="styles">
+        <link rel="stylesheet" href="{{asset('/styles/menu/index.css')}}">
+        <link rel="stylesheet" href="{{asset('/styles/index.css')}}">
+    </x-slot>
+    
+    <x-slot name="menu">
+        <x-side-menu :menu="$menu" />
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-slot name="scripts">
+        <script src="{{asset('/js/side-menu.js')}}"></script>
+        <!-- Font Awesome 5-->
+        <script src="https://kit.fontawesome.com/d821ae6b42.js" crossorigin="anonymous"></script>
+    </x-slot>
 </x-app-layout>
