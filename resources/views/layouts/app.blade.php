@@ -10,9 +10,15 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        @if (isset($styles))
+            {{ $styles }}
+        @endif
         
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @if (isset($scripts))
+            {{ $scripts }}
+        @endif
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -32,5 +38,9 @@
                 {{ $slot }}
             </main>
         </div>
+
+        @if (isset($scripts))
+            {{ $scripts }}
+        @endif
     </body>
 </html>
