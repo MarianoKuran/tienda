@@ -19,10 +19,14 @@ class PermisoSeeder extends Seeder
             Permission::create(['name'=>'configuracion']);
         }
 
-
         $permiso = Permission::where('name', 'configuracion.usuarios')->first();
         if ($permiso == null) {
             Permission::create(['name'=>'configuracion.usuarios']);
+        }
+
+        $permiso = Permission::where('name', 'configuracion.usuarios.listado')->first();
+        if ($permiso == null) {
+            Permission::create(['name'=>'configuracion.usuarios.listado']);
         }
     }
 }
