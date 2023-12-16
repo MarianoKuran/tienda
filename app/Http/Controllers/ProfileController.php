@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -56,5 +58,24 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function updateProfilePhoto(Request $req)
+    {
+        $req->validate([
+            'file' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        if($req->hasFile('file')){
+            $file = $req->file('file');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/profile-photos/'.Auth::user()->id, $fileName);
+
+            $user = User::find(Auth::user()->id);
+            $user->profile_photo = '/storage/profile-photos/'.Auth::user()->id.'/'.$fileName;
+            $user->save();
+        };
+
+        return back()->with('success', 'Actualizada Correctamente');
     }
 }
