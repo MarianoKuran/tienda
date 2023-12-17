@@ -1,16 +1,5 @@
 <x-app-layout>
-    <x-slot name="styles">
-        <link rel="stylesheet" href="{{asset('/styles/menu/index.css')}}">
-        <link rel="stylesheet" href="{{asset('/styles/index.css')}}">
-    </x-slot>
-    
-    <x-slot name="menu">
-        <x-side-menu :menu="$menu" />
-    </x-slot>
-
-    <x-slot name="scripts">
-        <script src="{{asset('/js/side-menu.js')}}"></script>
-        <!-- Font Awesome 5-->
-        <script src="https://kit.fontawesome.com/d821ae6b42.js" crossorigin="anonymous"></script>
-    </x-slot>
+    <div name="slot" class="flex items-center justify-center w-[100%] h-[100%] text-[2em] font-bold">
+        ¡Bienvenido, <p class="text-purple-500 ml-2">{{ Auth::user()->name }}</p>! 
+    </div>
 </x-app-layout>

@@ -12,41 +12,48 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <!-- Font Awesome 4 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- side-menu -->
+        <link rel="stylesheet" href="{{asset('/styles/menu/index.css')}}">
+        <link rel="stylesheet" href="{{asset('/styles/index.css')}}">
+        <!-- side-menu -->
+        <style>
+            .nav{
+                height: 65px;
+                background-color: white;
+            }
+        </style>
+
         @if (isset($styles))
             {{ $styles }}
-            <style>
-                .nav{
-                    height: 65px;
-                    background-color: white;
-                }
-           </style>
         @endif
         
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="{{asset('/js/side-menu.js')}}"></script>
+        <!-- Font Awesome 5-->
+        <script src="https://kit.fontawesome.com/d821ae6b42.js" crossorigin="anonymous"></script>
+
+        {{-- obtenemos el menu --}}
+        @php
+            $menu = App\Models\Menu::query();
+            $menu = $menu->orderBy('Permiso')->get();   
+        @endphp
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- side menu -->
-            @if (isset($menu))
-                {{ $menu }}
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div class="flex">
+                <!-- side menu -->
+                @include('components.side-menu')
+                
+                <!-- Page Content -->
+                @if (isset($slot))
+                    <main class="w-[100%]">
+                        {{ $slot }}
+                    </main>
+                @endif
+            </div>
         </div>
 
         @if (isset($scripts))

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Models\Idioma;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -93,4 +94,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//CONFIGURACION
+Route::prefix('configuracion')->group(function () {
+    Route::prefix('usuarios')->group(function () {
+        Route::get('/listado', [UserController::class, 'index']);
+    });
+});
 require __DIR__.'/auth.php';
