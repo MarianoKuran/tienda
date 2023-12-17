@@ -17,6 +17,7 @@ class UsuariosListadoTabla extends Component
 
     //SEARCH
     public $withSearchInput;
+    public $busqueda;
 
     //TABLES
     public $columns;
@@ -39,9 +40,13 @@ class UsuariosListadoTabla extends Component
 
         $usuarios = $usuarios->whereHas('roles', function($q) use($rolNombre){
             $q = $q->where('name', $rolNombre);
-        })->orderBy('name', 'asc');
+        });
 
-        $usuarios = $usuarios->paginate(10);
+        if ($this->busqueda != null) {
+            $usuarios = $usuarios->where('name', 'like', '%'.$this->busqueda.'%')->where('email', 'like', '%'.$this->busqueda.'%');
+        }
+
+        $usuarios = $usuarios->orderBy('name', 'asc')->paginate(10);
 
         return view('livewire.usuarios.usuarios-listado-tabla', [
             'usuarios' => $usuarios->appends([
@@ -49,6 +54,7 @@ class UsuariosListadoTabla extends Component
                 'tabSeleccionada' => $this->tabSeleccionada,
                 'withSearchInput' => $this->withSearchInput,
                 'tabs' => $this->tabs,
+                'busqueda' => $this->busqueda,
             ]),
         ]);
     }
