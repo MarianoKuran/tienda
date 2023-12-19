@@ -1,8 +1,17 @@
 .menu-items-ctn{
+    position:relative;
+    z-index: 10;
     height: 93vh;
     width: fit-content;
 
     background-color: white;
+}
+
+.menu-items-ctn-mobile{
+    position:relative;
+    z-index: 10;
+    height: fit-content;
+    width: 100%;
 }
 
 .menu-item{
@@ -40,8 +49,8 @@
     margin: 0px;
 }
 
-@media only screen and (max-width: 766px) {
+/* @media only screen and (max-width: 766px) {
     .menu-items-ctn{
         display: none;
     }
-}
+} */

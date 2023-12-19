@@ -1,4 +1,4 @@
-<section class="menu-items-ctn">
+<section id="menu-items-ctn" class="menu-items-ctn">
     @foreach ($menu as $m)
         @php
             $nivel = substr_count($m['Permiso'], '.') + 1;

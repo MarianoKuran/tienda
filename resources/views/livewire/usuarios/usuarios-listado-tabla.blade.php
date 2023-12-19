@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center w-full py-4 rounded">
+<div class="flex flex-col items-center w-full md:py-4 rounded">
     <ul class="flex flex-wrap md:w-[75%] text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50" id="tab-nav" role="tablist">
         <li class="inline-block p-4 w-[100%] md:w-[fit-content] rounded-ss-lg text-purple-700 bg-purple-100">
             {{$title}}
@@ -103,7 +103,7 @@
                 </div>
             </div>
         @endforeach
-        <div class="flex justify-center mt-2 w-[100%]">
+        <div class="flex justify-center my-2 w-[100%]">
             <div class="w-[200px]">
                 @if ($usuarios)
                     {{ $usuarios->links() }}

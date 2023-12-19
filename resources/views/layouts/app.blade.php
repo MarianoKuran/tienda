@@ -33,6 +33,33 @@
         <!-- Font Awesome 5-->
         <script src="https://kit.fontawesome.com/d821ae6b42.js" crossorigin="anonymous"></script>
 
+        {{-- obtenemos el tamaño de pantalla --}}
+        <script>
+            window.addEventListener('DOMContentLoaded', function () {
+                var mediaQ = screen.width;
+                var sideMenuCtn = document.getElementById('side-menu-ctn');
+                var sideMenu = document.getElementById('menu-items-ctn');
+
+                window.addEventListener('resize', function(event) {
+                    mediaQ = screen.width;
+                    if (mediaQ >= 100 && mediaQ <= 425) {
+                        sideMenu.classList = 'menu-items-ctn-mobile';
+                        sideMenuCtn.classList = 'hidden';
+                    } else {
+                        sideMenuCtn.classList = '';
+                        sideMenu.classList = 'menu-items-ctn';
+                    }
+                });
+                
+                if (mediaQ >= 100 && mediaQ <= 425) {
+                    sideMenuCtn.classList = 'hidden';
+                    sideMenu.classList = 'menu-items-ctn-mobile';
+                } else {
+                    sideMenuCtn.classList = '';
+                    sideMenu.classList = 'menu-items-ctn';
+                }
+            })
+        </script>
         {{-- obtenemos el menu --}}
         @php
             $menu = App\Models\Menu::query();
@@ -45,7 +72,9 @@
 
             <div class="flex">
                 <!-- side menu -->
-                @include('components.side-menu')
+                <div id="side-menu-ctn">
+                    @include('components.side-menu')
+                </div>
                 
                 <!-- Page Content -->
                 @if (isset($slot))
