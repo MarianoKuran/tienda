@@ -7,15 +7,17 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <!-- Font Awesome 4 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- side-menu -->
         <link rel="stylesheet" href="{{asset('/styles/menu/index.css')}}">
         <link rel="stylesheet" href="{{asset('/styles/index.css')}}">
         <!-- side-menu -->
+
+        {{-- Sweet Alert 2--}}
+        <link rel="stylesheet" href="sweetalert2.min.css">
+        {{-- Sweet Alert 2--}}
+
         <style>
             .nav{
                 height: 65px;
@@ -29,9 +31,25 @@
         
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        {{-- side-menu --}}
         <script src="{{asset('/js/side-menu.js')}}"></script>
+        {{-- side-menu --}}
+
         <!-- Font Awesome 5-->
         <script src="https://kit.fontawesome.com/d821ae6b42.js" crossorigin="anonymous"></script>
+        <!-- Font Awesome 5-->
+
+        {{-- Sweet Alert 2--}}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="sweetalert2.min.js"></script>
+        {{-- Sweet Alert 2--}}
+        
+        {{-- alertas--}}
+        <script src="{{asset('/js/alertas/alertaExito.js')}}"></script>
+        <script src="{{asset('/js/alertas/alertaConfirmarAccion.js')}}"></script>
+        {{-- alertas--}}
+        
 
         {{-- obtenemos el tamaño de pantalla --}}
         <script>
@@ -60,6 +78,7 @@
                 }
             })
         </script>
+
         {{-- obtenemos el menu --}}
         @php
             $menu = App\Models\Menu::query();

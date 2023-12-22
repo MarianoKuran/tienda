@@ -1,10 +1,11 @@
 .menu-items-ctn{
     position:relative;
-    z-index: 10;
+    z-index: 15;
     height: 93vh;
     width: fit-content;
 
     background-color: white;
+    border: .3px solid white;
 }
 
 .menu-items-ctn-mobile{
